@@ -1,0 +1,2041 @@
+/* ShopModa custom styles (on top of Bootstrap 5)
+   Order: every shop page basics, then the homepage top to bottom, then the other pages, admin, and media queries at the end. */
+
+/* Every page: fonts, colors and shared pieces (body.shop is set in layouts/layout.blade.php, body.admin in layouts/admin.blade.php) */
+.shop,
+.admin {
+    --sm-ink: #1c1917;
+    --sm-muted: #57534e;
+    --sm-line: #e7e1db;
+    --sm-soft: #f5f0eb;
+    --sm-tone: #efe7e1;
+    --sm-sale: #b42318;
+    --sm-sale-soft: #fef5f4;
+    --sm-logo-dot: #c2410c;
+    --sm-serif: "Cormorant Garamond", Georgia, serif;
+    --bs-body-font-family: "Jost", system-ui, sans-serif;
+    --bs-body-color: var(--sm-ink);
+    --bs-secondary-color: var(--sm-muted);
+    --bs-border-color: var(--sm-line);
+    --bs-link-color-rgb: 28, 25, 23;
+    --bs-link-hover-color-rgb: 180, 35, 24;
+    font-family: var(--bs-body-font-family);
+    color: var(--sm-ink);
+}
+
+.shop-logo {
+    font-family: "Inter Tight", "Jost", sans-serif;
+    font-weight: 800;
+    font-size: 1.5rem;
+    letter-spacing: -.03em;
+    color: var(--sm-ink);
+    text-decoration: none;
+}
+
+.shop-logo span {
+    color: var(--sm-logo-dot);
+}
+
+/* Square, letter-spaced buttons: solid ink, and red for sale/promotion actions */
+.btn-ink,
+.btn-sale {
+    --bs-btn-border-radius: 0;
+    --bs-btn-font-size: .75rem;
+    --bs-btn-font-weight: 500;
+    --bs-btn-padding-x: 1.5rem;
+    --bs-btn-padding-y: .65rem;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+}
+
+.btn-ink {
+    --bs-btn-color: #fff;
+    --bs-btn-bg: var(--sm-ink);
+    --bs-btn-border-color: var(--sm-ink);
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: #000;
+    --bs-btn-hover-border-color: #000;
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: #000;
+    --bs-btn-active-border-color: #000;
+}
+
+.btn-sale {
+    --bs-btn-color: #fff;
+    --bs-btn-bg: var(--sm-sale);
+    --bs-btn-border-color: var(--sm-sale);
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: #912018;
+    --bs-btn-hover-border-color: #912018;
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: #912018;
+    --bs-btn-active-border-color: #912018;
+    font-weight: 600;
+}
+
+.btn-ink.btn-lg {
+    --bs-btn-padding-x: 2.5rem;
+    --bs-btn-padding-y: 1rem;
+    --bs-btn-font-size: .75rem;
+}
+
+.btn-ink.btn-sm,
+.btn-sale.btn-sm {
+    --bs-btn-padding-x: 1.1rem;
+    --bs-btn-padding-y: .55rem;
+    --bs-btn-font-size: .7rem;
+}
+
+/* Square arrow buttons for sliders */
+.btn-square {
+    --bs-btn-border-radius: 0;
+    --bs-btn-border-color: #d6cec6;
+    --bs-btn-bg: #fff;
+    --bs-btn-hover-bg: var(--sm-soft);
+    --bs-btn-hover-border-color: #d6cec6;
+    --bs-btn-active-bg: var(--sm-soft);
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    display: inline-grid;
+    place-items: center;
+}
+
+.btn-square.border-0 {
+    --bs-btn-bg: transparent;
+}
+
+.btn-square-dark {
+    --bs-btn-color: #fff;
+    --bs-btn-bg: var(--sm-ink);
+    --bs-btn-border-color: var(--sm-ink);
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: #000;
+    --bs-btn-hover-border-color: #000;
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: #000;
+}
+
+/* Underlined, letter-spaced text link ("See all", "On sale") */
+.link-caps {
+    font-size: .75rem;
+    font-weight: 500;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--sm-ink);
+    text-decoration: underline;
+    text-underline-offset: 6px;
+}
+
+.link-caps:hover {
+    color: var(--sm-sale);
+}
+
+.label-caps {
+    font-size: .75rem;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--sm-muted);
+}
+
+.display-serif {
+    font-family: var(--sm-serif);
+    font-weight: 500;
+    font-size: 4.75rem;
+    line-height: .98;
+    letter-spacing: -.02em;
+}
+
+/* Cormorant uses old-style figures by default ("Gel-1130" would look uneven), so serif text uses lining numbers */
+.display-serif,
+.section-title,
+.perk-title,
+.brand-slide-name,
+.category-tile,
+.model-card-name,
+.home-cover-countdown,
+.footer-tagline {
+    font-variant-numeric: lining-nums;
+}
+
+.display-serif em,
+.section-title em {
+    font-weight: 400;
+}
+
+.lead-muted {
+    font-size: 1.125rem;
+    line-height: 1.65;
+    color: var(--sm-muted);
+    max-width: 440px;
+}
+
+.section-head {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+    margin-bottom: 1.75rem;
+}
+
+.section-title {
+    font-family: var(--sm-serif);
+    font-weight: 500;
+    font-size: 3rem;
+    letter-spacing: -.01em;
+    margin: 0;
+}
+
+/* Promotion badges: solid red for a price discount, red outline for cart promotions ("2nd pair -20%") */
+.badge-sale,
+.badge-promo {
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+    font-size: .6875rem;
+    font-weight: 600;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    padding: .3rem .55rem;
+    line-height: 1.2;
+}
+
+.badge-sale {
+    background: var(--sm-sale);
+    color: #fff;
+}
+
+.badge-promo {
+    background: #fff;
+    color: var(--sm-sale);
+    border: 1px solid var(--sm-sale);
+}
+
+.badge-promo-lg {
+    padding: .45rem .8rem;
+    letter-spacing: .2em;
+    background: transparent;
+}
+
+.btn-outline-ink {
+    --bs-btn-color: var(--sm-ink);
+    --bs-btn-border-color: var(--sm-ink);
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: var(--sm-ink);
+    --bs-btn-hover-border-color: var(--sm-ink);
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: var(--sm-ink);
+    --bs-btn-active-border-color: var(--sm-ink);
+    --bs-btn-border-radius: 0;
+    --bs-btn-font-size: .75rem;
+    --bs-btn-font-weight: 500;
+    --bs-btn-padding-x: 1.5rem;
+    --bs-btn-padding-y: .65rem;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+}
+
+.btn-outline-ink.btn-lg,
+.btn-ink.w-100,
+.btn-outline-ink.w-100 {
+    --bs-btn-padding-y: 1rem;
+}
+
+/* Page header: breadcrumb, big serif title and a dark rule under it */
+.page-crumbs {
+    font-size: .8125rem;
+    color: var(--sm-muted);
+}
+
+.page-crumbs a {
+    color: var(--sm-muted);
+    text-decoration: none;
+}
+
+.page-crumbs a:hover {
+    color: var(--sm-ink);
+}
+
+.page-title {
+    font-family: var(--sm-serif);
+    font-weight: 500;
+    font-size: 4rem;
+    line-height: 1;
+    letter-spacing: -.01em;
+    margin: 0;
+    font-variant-numeric: lining-nums;
+}
+
+.page-title em {
+    font-weight: 400;
+}
+
+.page-title-sm {
+    font-size: 3rem;
+}
+
+.page-title-count {
+    font-family: var(--bs-body-font-family);
+    font-size: 1rem;
+    color: var(--sm-muted);
+    margin-left: .5rem;
+}
+
+.rule-ink {
+    border-bottom: 1px solid var(--sm-ink);
+}
+
+.rule-ink-top {
+    border-top: 1px solid var(--sm-ink);
+}
+
+/* Soft beige box (summaries, side notes) and outlined box */
+.panel-soft {
+    background: var(--sm-soft);
+    padding: 2rem;
+}
+
+.panel-line {
+    border: 1px solid var(--sm-line);
+    padding: 2rem;
+}
+
+.panel-sale {
+    border: 1px solid var(--sm-sale);
+    background: var(--sm-sale-soft);
+    padding: 1.5rem 1.75rem;
+}
+
+.serif-lg {
+    font-family: var(--sm-serif);
+    font-size: 1.75rem;
+    font-weight: 500;
+    line-height: 1.15;
+    font-variant-numeric: lining-nums;
+}
+
+/* Forms: square fields with a warm border, ink focus */
+:is(.shop, .admin) .form-control,
+:is(.shop, .admin) .form-select {
+    border-radius: 0;
+    border-color: #d6cec6;
+    padding: .7rem .9rem;
+    font-size: .9375rem;
+}
+
+/* Room on the right for the dropdown arrow (the padding above would otherwise put the text under it) */
+:is(.shop, .admin) .form-select {
+    padding-right: 2.5rem;
+    background-position: right .9rem center;
+}
+
+/* Small fields (admin filters, export, per page): same height as the .btn-sm buttons next to them */
+:is(.shop, .admin) .form-control-sm,
+:is(.shop, .admin) .form-select-sm {
+    padding: .25rem .6rem;
+    font-size: .875rem;
+}
+
+:is(.shop, .admin) .form-select-sm {
+    padding-right: 2rem;
+    background-position: right .6rem center;
+}
+
+:is(.shop, .admin) .form-control:focus,
+:is(.shop, .admin) .form-select:focus {
+    border-color: var(--sm-ink);
+    box-shadow: 0 0 0 1px var(--sm-ink);
+}
+
+:is(.shop, .admin) .form-control:disabled {
+    background: var(--sm-soft);
+    border-color: var(--sm-line);
+    color: var(--sm-muted);
+}
+
+:is(.shop, .admin) .form-label {
+    font-size: .8125rem;
+    color: var(--sm-muted);
+    margin-bottom: .4rem;
+}
+
+:is(.shop, .admin) .form-text {
+    font-size: .8125rem;
+    color: var(--sm-muted);
+}
+
+:is(.shop, .admin) .form-check-input {
+    border-color: #a8a29e;
+    border-radius: 0;
+}
+
+:is(.shop, .admin) .form-check-input:checked {
+    background-color: var(--sm-ink);
+    border-color: var(--sm-ink);
+}
+
+:is(.shop, .admin) .form-check-input:focus {
+    box-shadow: 0 0 0 2px rgba(28, 25, 23, .2);
+}
+
+/* Messages: square boxes, errors in the sale red */
+:is(.shop, .admin) .alert {
+    border-radius: 0;
+}
+
+:is(.shop, .admin) .alert-danger {
+    background: var(--sm-sale-soft);
+    border-color: var(--sm-sale);
+    color: var(--sm-ink);
+}
+
+:is(.shop, .admin) .alert-success {
+    background: #f1f6f2;
+    border-color: #b7d3bf;
+    color: var(--sm-ink);
+}
+
+/* Flash message toasts (fixed/flash.blade.php, public/js/toasts.js): square white box with a colored bar on the left
+   (green for success, sale red for errors) and a line along the bottom that shrinks until the toast hides */
+.site-toast {
+    position: relative;
+    overflow: hidden;
+    width: 360px;
+    padding: 1rem 1rem 1.1rem 1.25rem;
+    background: #fff;
+    border: 1px solid var(--sm-line);
+    border-left: 3px solid #2f7a4a;
+    border-radius: 0;
+    box-shadow: 0 12px 32px rgba(28, 25, 23, .14);
+    color: var(--sm-ink);
+    font-size: .9375rem;
+    line-height: 1.5;
+}
+
+.site-toast-error {
+    border-left-color: var(--sm-sale);
+}
+
+.site-toast-icon {
+    font-size: 1.15rem;
+    line-height: 1.3;
+    color: #2f7a4a;
+}
+
+.site-toast-error .site-toast-icon {
+    color: var(--sm-sale);
+}
+
+.site-toast .btn-close {
+    font-size: .7rem;
+    margin-top: .3rem;
+}
+
+.site-toast-bar {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 2px;
+    background: var(--sm-ink);
+    transform-origin: left;
+    opacity: .25;
+}
+
+.site-toast-bar.is-running {
+    animation: site-toast-bar var(--toast-delay, 5s) linear forwards;
+}
+
+@keyframes site-toast-bar {
+    from {
+        transform: scaleX(1);
+    }
+    to {
+        transform: scaleX(0);
+    }
+}
+
+/* Tables: caps header over a dark rule, hairlines between rows */
+:is(.shop, .admin) .table {
+    --bs-table-bg: transparent;
+    --bs-table-border-color: var(--sm-line);
+}
+
+:is(.shop, .admin) .table > thead th {
+    font-size: .6875rem;
+    font-weight: 500;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--sm-muted);
+    border-bottom: 1px solid var(--sm-ink);
+    padding-top: .9rem;
+    padding-bottom: .9rem;
+}
+
+:is(.shop, .admin) .table > tbody td {
+    padding-top: 1.1rem;
+    padding-bottom: 1.1rem;
+}
+
+/* Pagination (Bootstrap 5 links from Laravel) */
+:is(.shop, .admin) .pagination {
+    --bs-pagination-border-radius: 0;
+    --bs-pagination-color: var(--sm-ink);
+    --bs-pagination-border-color: var(--sm-line);
+    --bs-pagination-hover-color: var(--sm-ink);
+    --bs-pagination-hover-bg: var(--sm-soft);
+    --bs-pagination-focus-color: var(--sm-ink);
+    --bs-pagination-focus-box-shadow: 0 0 0 2px rgba(28, 25, 23, .2);
+    --bs-pagination-active-bg: var(--sm-ink);
+    --bs-pagination-active-border-color: var(--sm-ink);
+    --bs-pagination-padding-x: 1rem;
+    --bs-pagination-padding-y: .6rem;
+}
+
+/* Order totals (partials/totals.blade.php) */
+.totals-line {
+    display: flex;
+    justify-content: space-between;
+    padding: .4rem 0;
+    font-size: .9375rem;
+}
+
+.totals-discount {
+    color: var(--sm-sale);
+}
+
+.totals-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+    border-top: 1px solid var(--sm-ink);
+    margin-top: .6rem;
+    padding-top: .9rem;
+}
+
+.totals-total [data-total] {
+    font-family: var(--sm-serif);
+    font-size: 2rem;
+    font-weight: 500;
+    font-variant-numeric: lining-nums;
+}
+
+/* Every shop page: navigation (fixed/navigation.blade.php) */
+.shop-nav {
+    --bs-navbar-padding-y: 1rem;
+    --bs-navbar-color: var(--sm-ink);
+    --bs-navbar-hover-color: var(--sm-ink);
+    --bs-navbar-active-color: var(--sm-ink);
+}
+
+.shop-nav .nav-link {
+    font-size: .8125rem;
+    font-weight: 500;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    border-bottom: 1px solid transparent;
+}
+
+.shop-nav .nav-link.active {
+    border-bottom-color: currentColor;
+}
+
+.shop-nav .nav-link-sale,
+.shop-nav .nav-link-sale:hover {
+    color: var(--sm-sale);
+}
+
+.shop-nav .dropdown-menu {
+    --bs-dropdown-border-radius: 0;
+    --bs-dropdown-border-color: var(--sm-line);
+    --bs-dropdown-link-active-bg: var(--sm-ink);
+}
+
+.shop-search {
+    gap: .6rem;
+    border-bottom: 1px solid var(--sm-ink);
+    max-width: 230px;
+}
+
+.shop-search .form-control {
+    border: 0;
+    border-radius: 0;
+    padding: .35rem 0;
+    background: transparent;
+    font-size: .875rem;
+    box-shadow: none;
+}
+
+.cart-count {
+    font-size: .8125rem;
+    letter-spacing: .08em;
+}
+
+/* Every shop page: "Add to cart" animation (public/js/cart-drawer.js). The product photo copy flying to the bag icon,
+   then the icon pops. Above the sticky navigation and the drawer. */
+.cart-fly {
+    position: fixed;
+    z-index: 1060;
+    margin: 0;
+    object-fit: cover;
+    transform-origin: center;
+    pointer-events: none;
+}
+
+.cart-bump {
+    display: inline-block;
+    animation: cart-bump .45s ease-out;
+}
+
+@keyframes cart-bump {
+    40% { transform: scale(1.35); }
+    70% { transform: scale(.92); }
+}
+
+/* Every shop page: cart drawer (partials/cart-drawer.blade.php), Bootstrap offcanvas from the right */
+.cart-drawer {
+    --bs-offcanvas-width: 420px;
+    --bs-offcanvas-padding-x: 1.5rem;
+}
+
+.cart-drawer .offcanvas-header {
+    border-bottom: 1px solid var(--sm-ink);
+}
+
+.cart-drawer-item {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--sm-line);
+    transition: opacity .2s;
+}
+
+/* The row that was just added: soft background that fades out */
+.cart-drawer-item-new {
+    animation: cart-drawer-new 2.5s ease-out;
+}
+
+@keyframes cart-drawer-new {
+    0%, 40% { background: var(--sm-soft); }
+    100% { background: transparent; }
+}
+
+.cart-drawer-item.is-removing {
+    opacity: .4;
+    pointer-events: none;
+}
+
+.cart-drawer-footer {
+    position: sticky;
+    bottom: calc(-1 * var(--bs-offcanvas-padding-y));
+    margin-top: 1rem;
+    padding: .25rem 0 var(--bs-offcanvas-padding-y);
+    background: var(--bs-body-bg);
+}
+
+/* "Added" state of the Add to cart button */
+.btn-ink.is-added:disabled {
+    --bs-btn-disabled-bg: #2f5d3a;
+    --bs-btn-disabled-border-color: #2f5d3a;
+    --bs-btn-disabled-color: #fff;
+    --bs-btn-disabled-opacity: 1;
+}
+
+/* Every shop page: announcement bar under the navigation (partials/announcements.blade.php).
+   Thin red border on a very light red background, with a softly pulsing dot. */
+.announce-bar {
+    border: 1px solid var(--sm-sale);
+    background: var(--sm-sale-soft);
+}
+
+.announce-slides {
+    min-width: 0;
+}
+
+.announce-slide {
+    min-height: 54px;
+}
+
+/* Image whose file name contains "background": fills the slide, darkened on the left so the text stays readable.
+   --announce-bg is set inline on the slide (the image URL comes from the database). */
+.announce-slide-bg {
+    background-image: linear-gradient(90deg, rgba(28, 25, 23, .9) 0%, rgba(28, 25, 23, .6) 60%, rgba(28, 25, 23, .35) 100%), var(--announce-bg);
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+}
+
+.announce-type {
+    display: inline-flex;
+    align-items: center;
+    gap: .6rem;
+    font-size: .6875rem;
+    font-weight: 600;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+}
+
+.announce-kind-promo {
+    color: var(--sm-sale);
+}
+
+.announce-kind-drop {
+    color: var(--sm-ink);
+}
+
+.announce-kind-restock {
+    color: #0f766e;
+}
+
+.announce-dot {
+    display: inline-block;
+    width: .5rem;
+    height: .5rem;
+    border-radius: 50%;
+    background: currentColor;
+    vertical-align: middle;
+    animation: announce-pulse 1.8s ease-out infinite;
+}
+
+.announce-thumb {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+}
+
+.announce-title {
+    font-weight: 600;
+}
+
+.announce-body,
+.announce-countdown {
+    color: var(--sm-muted);
+}
+
+.announce-countdown strong {
+    color: var(--sm-sale);
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+}
+
+.announce-slide-bg .announce-type,
+.announce-slide-bg .announce-body,
+.announce-slide-bg .announce-countdown,
+.announce-slide-bg .announce-countdown strong {
+    color: #fff;
+}
+
+.announce-nav {
+    position: relative;
+    z-index: 2; /* above the slide's stretched "Shop now" link */
+}
+
+.announce-nav .btn-link {
+    color: var(--sm-ink);
+}
+
+/* Dot: a soft ring grows out of it and fades */
+@keyframes announce-pulse {
+    0% {
+        box-shadow: 0 0 0 0 currentColor;
+    }
+
+    100% {
+        box-shadow: 0 0 0 .45rem transparent;
+    }
+}
+
+/* Homepage: promotion cover (instead of the hero while promotions run) */
+.home-cover-slide {
+    background: var(--sm-soft);
+    min-height: 560px;
+}
+
+.home-cover-media {
+    background: #e6ddd5;
+    min-height: 320px;
+}
+
+.home-cover-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.home-cover-countdown {
+    font-family: var(--sm-serif);
+    font-size: 2.75rem;
+    font-weight: 500;
+    line-height: 1;
+    color: var(--sm-sale);
+    font-variant-numeric: tabular-nums;
+}
+
+.home-cover-dots button {
+    width: 56px;
+    height: 24px;
+    border: 0;
+    padding: 0;
+    background: linear-gradient(#d6cec6, #d6cec6) center / 100% 2px no-repeat;
+}
+
+.home-cover-dots button.active {
+    background-image: linear-gradient(var(--sm-ink), var(--sm-ink));
+}
+
+/* Homepage: hero (the cover photo is the first featured sneaker) */
+.display-serif-xl {
+    font-size: 6rem;
+    line-height: .95;
+}
+
+.hero-media {
+    background: var(--sm-tone);
+    aspect-ratio: 1 / 1;
+    max-height: 620px;
+    width: 100%;
+    overflow: hidden;
+}
+
+.hero-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Homepage: delivery, returns, support strip (partials/perks.blade.php) */
+.perks {
+    border-top: 1px solid var(--sm-line);
+    border-bottom: 1px solid var(--sm-line);
+}
+
+.perk-icon {
+    font-size: 1.6rem;
+    line-height: 1;
+}
+
+.perk-title {
+    font-family: var(--sm-serif);
+    font-size: 1.45rem;
+    font-weight: 500;
+    line-height: 1.2;
+}
+
+.perk-title-short {
+    font-size: .8125rem;
+    font-weight: 500;
+}
+
+.perk-text {
+    font-size: .875rem;
+    line-height: 1.5;
+    color: var(--sm-muted);
+    margin-top: .25rem;
+}
+
+/* Homepage: every section after the perks strip */
+.home-section {
+    padding-top: 6rem;
+}
+
+/* Homepage: brands slider */
+.brand-slide {
+    color: var(--sm-ink);
+    text-decoration: none;
+}
+
+.brand-slide-media {
+    background: var(--sm-tone);
+    aspect-ratio: 3 / 2;
+    overflow: hidden;
+}
+
+.brand-slide-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform .4s ease;
+}
+
+.brand-slide:hover img {
+    transform: scale(1.03);
+}
+
+.brand-slide-name {
+    font-family: var(--sm-serif);
+    font-size: 2.1rem;
+    font-weight: 500;
+    line-height: 1.1;
+}
+
+/* Homepage: categories as text tiles (categories have no images) */
+.category-tiles {
+    border-top: 1px solid var(--sm-ink);
+}
+
+.category-tile {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 210px;
+    height: 100%;
+    padding: 1.5rem 1.5rem 1.6rem 0;
+    border-bottom: 1px solid var(--sm-line);
+    color: var(--sm-ink);
+    text-decoration: none;
+}
+
+.category-tile-count {
+    font-family: var(--sm-serif);
+    font-style: italic;
+    font-size: 4rem;
+    line-height: 1;
+    color: #c9bfb6;
+    transition: color .2s ease;
+}
+
+.category-tile:hover .category-tile-count {
+    color: var(--sm-sale);
+}
+
+.category-tile-name {
+    display: block;
+    font-family: var(--sm-serif);
+    font-size: 2.1rem;
+    font-weight: 500;
+    line-height: 1.1;
+}
+
+.category-tile-meta {
+    display: block;
+    font-size: .75rem;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: var(--sm-muted);
+    margin-top: .4rem;
+}
+
+/* Homepage: Featured / Best sellers / New arrivals. Best sellers sits on a soft band. */
+.home-band {
+    background: var(--sm-soft);
+    margin-top: 6rem;
+    padding-bottom: 5.5rem;
+    padding-top: 5.5rem;
+}
+
+.home-band .product-card-image {
+    background: #fff;
+}
+
+/* Product card (homepage, sneakers list, product and promotion pages) */
+.product-card-image {
+    background: var(--sm-tone);
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+}
+
+.product-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform .4s ease;
+}
+
+.product-card:hover .product-card-image img {
+    transform: scale(1.03);
+}
+
+.product-card-brand {
+    font-size: .6875rem;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--sm-muted);
+}
+
+.product-card-name {
+    display: block;
+    font-size: 1.0625rem;
+    color: var(--sm-ink);
+    text-decoration: none;
+    margin-top: .2rem;
+}
+
+.product-card-price {
+    font-weight: 500;
+}
+
+.price-sale {
+    color: var(--sm-sale);
+}
+
+.price-old {
+    font-size: .875rem;
+    font-weight: 400;
+    color: #78716c;
+    text-decoration: line-through;
+}
+
+/* Homepage: all models slider */
+.models-slider {
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    padding-bottom: 1rem;
+}
+
+.models-slider::-webkit-scrollbar {
+    display: none;
+}
+
+.models-slider > [class*="col-"] {
+    scroll-snap-align: start;
+}
+
+.model-card {
+    border: 1px solid var(--sm-line);
+    color: var(--sm-ink);
+    text-decoration: none;
+}
+
+.model-card-media {
+    background: var(--sm-tone);
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+}
+
+.model-card-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.model-card-name {
+    font-family: var(--sm-serif);
+    font-size: 1.65rem;
+    font-weight: 500;
+    line-height: 1.15;
+    margin-top: .25rem;
+}
+
+/* Every shop page: footer (fixed/footer.blade.php) */
+.site-footer {
+    background: var(--sm-ink);
+    color: #d6d0ca;
+}
+
+.shop-logo-light {
+    color: #fff;
+}
+
+.shop-logo-light span {
+    color: #f97316;
+}
+
+.footer-tagline {
+    font-family: var(--sm-serif);
+    font-size: 1.5rem;
+    line-height: 1.35;
+    color: #fff;
+    max-width: 380px;
+}
+
+.footer-muted {
+    color: #b5ada6;
+}
+
+.footer-title {
+    font-size: .6875rem;
+    font-weight: 500;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: #b5ada6;
+    margin-bottom: 1rem;
+}
+
+.footer-link {
+    display: inline-block;
+    padding: .3rem 0;
+    font-size: .875rem;
+    color: #fff;
+    text-decoration: none;
+}
+
+.footer-link:hover {
+    color: #fff;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
+
+.footer-link-underline {
+    text-decoration: underline;
+    text-underline-offset: 5px;
+}
+
+.footer-bottom {
+    border-top: 1px solid #3a3431;
+}
+
+/* Order status: colored dot + name (partials/status-badge.blade.php; My orders and the admin) */
+.status-dot {
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+    font-size: .875rem;
+    white-space: nowrap;
+}
+
+.status-dot::before {
+    content: "";
+    width: .45rem;
+    height: .45rem;
+    border-radius: 50%;
+    background: #a8a29e;
+}
+
+.status-unconfirmed {
+    color: #b42318;
+}
+
+.status-unconfirmed::before {
+    background: #b42318;
+}
+
+.status-new::before {
+    background: #1d4ed8;
+}
+
+.status-processing::before {
+    background: #0e7490;
+}
+
+.status-shipped::before {
+    background: #b45309;
+}
+
+.status-completed::before {
+    background: #15803d;
+}
+
+.status-cancelled,
+.status-expired {
+    color: #57534e;
+}
+
+/* Inner shop pages: shared helpers */
+.text-sale {
+    color: var(--sm-sale) !important;
+}
+
+.text-pre-line {
+    white-space: pre-line;
+}
+
+.normal-case {
+    text-transform: none;
+    letter-spacing: 0;
+}
+
+.min-w-0 {
+    min-width: 0;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 4rem 1rem;
+}
+
+/* A row in a ruled list: text left, detail right */
+.list-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: .9rem 0;
+    border-bottom: 1px solid var(--sm-line);
+    color: var(--sm-ink);
+    text-decoration: none;
+}
+
+.list-row:hover {
+    color: var(--sm-ink);
+}
+
+.quantity-input {
+    width: 4.5rem;
+}
+
+/* Sneakers list: filters column */
+.filters .form-select,
+.filters .form-control {
+    font-size: .875rem;
+}
+
+/* Product page: photos, price and size buttons */
+.product-thumbs {
+    flex-shrink: 0;
+}
+
+.product-thumb {
+    width: 84px;
+    height: 104px;
+    padding: 0;
+    border: 1px solid var(--sm-line);
+    background: var(--sm-tone);
+}
+
+.product-thumb:hover,
+.product-thumb:focus-visible {
+    border-color: var(--sm-ink);
+}
+
+.product-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.product-main-image {
+    background: var(--sm-tone);
+    aspect-ratio: 4 / 5;
+}
+
+.product-main-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.product-price {
+    font-size: 1.6rem;
+    font-weight: 500;
+}
+
+.product-price .price-old {
+    font-size: 1.05rem;
+}
+
+.size-grid {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: .5rem;
+}
+
+.size-option label {
+    display: grid;
+    place-items: center;
+    height: 52px;
+    border: 1px solid #d6cec6;
+    background: #fff;
+    cursor: pointer;
+    font-variant-numeric: tabular-nums;
+}
+
+.size-option label:hover {
+    border-color: var(--sm-ink);
+}
+
+.size-option input:checked + label {
+    background: var(--sm-ink);
+    color: #fff;
+    border-color: var(--sm-ink);
+}
+
+.size-option input:disabled + label {
+    color: #a8a29e;
+    text-decoration: line-through;
+    cursor: not-allowed;
+    border-color: var(--sm-line);
+}
+
+/* Cart and order details: one row per item */
+.cart-row {
+    display: flex;
+    gap: 1.5rem;
+    padding: 1.5rem 0;
+    border-bottom: 1px solid var(--sm-line);
+}
+
+.cart-row-image {
+    display: block;
+    width: 120px;
+    height: 150px;
+    background: var(--sm-tone);
+}
+
+.cart-row-image-sm {
+    width: 80px;
+    height: 100px;
+}
+
+/* Cart drawer rows */
+.cart-row-image-xs {
+    width: 64px;
+    height: 80px;
+}
+
+.cart-row-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Cart page: - / + quantity stepper and the states while public/js/cart-page.js saves a change */
+.cart-stepper {
+    flex-wrap: nowrap;
+    width: auto;
+}
+
+.cart-stepper .btn-square {
+    width: 40px;
+}
+
+.cart-stepper .quantity-input {
+    width: 3.25rem;
+    flex: 0 0 auto;
+    -moz-appearance: textfield;
+    appearance: textfield;
+}
+
+.cart-stepper .quantity-input::-webkit-outer-spin-button,
+.cart-stepper .quantity-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.cart-page [data-totals],
+.cart-page [data-cart-row-subtotal] {
+    transition: opacity .2s ease;
+}
+
+.cart-page.is-updating [data-totals],
+.cart-page.is-updating [data-cart-row-subtotal] {
+    opacity: .45;
+}
+
+.cart-row.is-removing {
+    opacity: .4;
+    pointer-events: none;
+}
+
+/* Cart page: a price that changed after a save. A red bar sweeps in over it from the left, then out to the right,
+   revealing the new value (public/js/cart-page.js adds .cart-flash) */
+.cart-flash {
+    position: relative;
+    animation: cart-flash-text .9s ease-in-out;
+}
+
+.cart-flash::after {
+    content: "";
+    position: absolute;
+    inset: -.1em -.25em;
+    background: var(--sm-sale);
+    transform: scaleX(0);
+    transform-origin: left;
+    pointer-events: none;
+    animation: cart-flash-bar .9s cubic-bezier(.65, 0, .35, 1);
+}
+
+@keyframes cart-flash-bar {
+    0% {
+        transform: scaleX(0);
+        transform-origin: left;
+    }
+    45% {
+        transform: scaleX(1);
+        transform-origin: left;
+    }
+    55% {
+        transform: scaleX(1);
+        transform-origin: right;
+    }
+    100% {
+        transform: scaleX(0);
+        transform-origin: right;
+    }
+}
+
+@keyframes cart-flash-text {
+    0%, 50% {
+        color: transparent;
+    }
+    51% {
+        color: var(--sm-sale);
+    }
+    100% {
+        color: inherit;
+    }
+}
+
+/* Checkout: order summary lines and the "Placing your order..." overlay (public/js/checkout-submit.js), above the sticky navigation */
+/* Same height as a form field next to it (coupon "Apply") */
+.btn-match-field {
+    height: calc(.9375rem * 1.5 + 1.4rem + 2px);
+    --bs-btn-padding-y: 0;
+}
+
+.order-line {
+    display: flex;
+    align-items: center;
+    gap: .9rem;
+    padding: .75rem 0;
+    border-bottom: 1px solid #e2d9d0;
+    font-size: .875rem;
+}
+
+.order-line-image {
+    width: 48px;
+    height: 60px;
+    object-fit: cover;
+    background: #fff;
+    flex-shrink: 0;
+}
+
+.checkout-overlay {
+    z-index: 1090;
+    backdrop-filter: blur(2px);
+}
+
+.checkout-overlay-spinner {
+    width: 3rem;
+    height: 3rem;
+    color: var(--sm-ink);
+}
+
+/* Checkout: thank-you page and order confirmation page (also the code field on the reset password page) */
+.checkout-success {
+    max-width: 720px;
+}
+
+.confirm-order {
+    max-width: 520px;
+}
+
+:is(.shop, .admin) .confirm-order-code {
+    font-family: var(--sm-serif);
+    font-size: 2.5rem;
+    letter-spacing: .4em;
+    padding-top: .4rem;
+    padding-bottom: .4rem;
+    border-color: var(--sm-ink);
+    font-variant-numeric: lining-nums;
+}
+
+/* Login and register: form next to a soft panel; forgot / reset password pages */
+.auth-split {
+    min-height: 600px;
+}
+
+.auth-split-side {
+    background: var(--sm-tone);
+    align-items: flex-end;
+    padding: 3rem;
+}
+
+.auth-side-title {
+    font-size: 2.75rem;
+}
+
+.auth-box {
+    max-width: 440px;
+}
+
+/* Account pages: tabs, narrow order page, profile form */
+.account-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin-top: 1.75rem;
+    border-bottom: 1px solid var(--sm-line);
+}
+
+.account-nav a {
+    padding: .9rem 0;
+    margin-bottom: -1px;
+    border-bottom: 2px solid transparent;
+    font-size: .75rem;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--sm-muted);
+    text-decoration: none;
+}
+
+.account-nav a.active {
+    color: var(--sm-ink);
+    font-weight: 600;
+    border-bottom-color: var(--sm-ink);
+}
+
+.account-narrow {
+    max-width: 960px;
+}
+
+.account-form {
+    max-width: 640px;
+}
+
+/* How ordering works page: section links, numbered steps; anchors land below the sticky navigation */
+.help-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem 2rem;
+    padding: 1rem 0;
+    border-top: 1px solid var(--sm-ink);
+    border-bottom: 1px solid var(--sm-line);
+}
+
+.help-nav a {
+    font-size: .75rem;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--sm-ink);
+    text-decoration: none;
+}
+
+.help-nav a:hover {
+    color: var(--sm-sale);
+}
+
+.help-section {
+    scroll-margin-top: 6rem;
+}
+
+.help-step {
+    padding: 1.75rem 1.75rem 1.75rem 0;
+    border-bottom: 1px solid var(--sm-line);
+}
+
+.help-step-number {
+    font-family: var(--sm-serif);
+    font-style: italic;
+    font-size: 3.5rem;
+    line-height: 1;
+    color: #c9bfb6;
+    font-variant-numeric: lining-nums;
+}
+
+.help-step-number-sm {
+    font-size: 2rem;
+    width: 2rem;
+    flex-shrink: 0;
+}
+
+.help-aside-title {
+    flex: 0 0 200px;
+}
+
+/* Error pages (resources/views/errors): big serif code over the title, search box on 404 */
+.error-page {
+    max-width: 640px;
+    padding-top: 3rem;
+}
+
+.error-code {
+    font-family: var(--sm-serif);
+    font-size: 7rem;
+    line-height: 1;
+    color: var(--sm-logo-dot);
+    font-variant-numeric: lining-nums;
+    margin-bottom: 1rem;
+}
+
+.error-search {
+    max-width: 420px;
+}
+
+/* Checkout, login and register: honeypot spam trap (partials/honeypot.blade.php).
+   Moved off screen instead of display:none, because many bots skip fields hidden that way. */
+.hp-field {
+    position: absolute;
+    left: -10000px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+
+/* Admin: layout (layouts/admin.blade.php). Shares the shop's colors, fonts, forms and tables; the rules below
+   restyle the Bootstrap cards, buttons and badges the admin pages use, so the pages themselves stay plain Bootstrap. */
+.admin {
+    background: #faf8f6;
+}
+
+.admin-side {
+    flex: 0 0 250px;
+    background: #fff;
+    border-right: 1px solid var(--sm-line);
+    padding: 1.4rem 1rem 1.75rem;
+}
+
+.admin-side .shop-logo {
+    font-size: 1.25rem;
+}
+
+.admin-tag {
+    font-size: .625rem;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    border: 1px solid var(--sm-ink);
+    padding: .15rem .4rem;
+    color: var(--sm-ink);
+}
+
+.admin-menu {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1.5rem;
+}
+
+.admin-menu-title {
+    font-size: .625rem;
+    letter-spacing: .22em;
+    text-transform: uppercase;
+    color: #78716c;
+    padding: 0 .6rem .4rem;
+}
+
+.admin-menu a {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: .55rem .6rem;
+    font-size: .875rem;
+    color: var(--sm-ink);
+    text-decoration: none;
+}
+
+.admin-menu a:hover {
+    background: var(--sm-soft);
+}
+
+.admin .admin-menu a.active,
+.admin .admin-menu a.active:hover {
+    background: var(--sm-ink);
+    color: #fff;
+}
+
+.admin-menu-icon {
+    display: inline-block;
+    width: 1.5rem;
+    font-size: 1rem;
+}
+
+.admin-count {
+    font-size: .6875rem;
+    font-weight: 600;
+    background: var(--sm-sale);
+    color: #fff;
+    padding: .1rem .45rem;
+}
+
+.admin-side-foot {
+    margin-top: 2rem;
+    padding: 1.25rem .6rem 0;
+    border-top: 1px solid var(--sm-line);
+}
+
+.admin-main {
+    min-width: 0;
+    padding: 2rem 2.5rem 3rem;
+}
+
+.admin h1.h3,
+.admin .h3 {
+    font-family: var(--sm-serif);
+    font-weight: 500;
+    font-size: 2.5rem;
+    line-height: 1.05;
+    font-variant-numeric: lining-nums;
+}
+
+.admin a:not(.btn) {
+    color: var(--sm-ink);
+}
+
+.admin a:not(.btn):hover {
+    color: var(--sm-sale);
+}
+
+.admin .table a:not(.btn),
+.admin .list-group a:not(.btn) {
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.admin .card,
+.admin .card.border-0 {
+    border: 1px solid var(--sm-line) !important;
+    border-radius: 0;
+    box-shadow: none !important;
+}
+
+.admin .card-header {
+    background: #fff;
+    border-bottom-color: var(--sm-line);
+    font-family: var(--sm-serif);
+    font-size: 1.4rem;
+    font-weight: 500;
+    padding: .9rem 1.25rem;
+}
+
+.admin .card-alert {
+    border-color: var(--sm-sale) !important;
+}
+
+.admin .rounded,
+.admin .badge,
+.admin .list-group,
+.admin .input-group-text,
+.admin .dropdown-menu {
+    border-radius: 0 !important;
+}
+
+.admin .shadow-sm {
+    box-shadow: none !important;
+}
+
+.admin .list-group-item {
+    border-color: var(--sm-line);
+}
+
+.admin .table > tbody td {
+    padding-top: .8rem;
+    padding-bottom: .8rem;
+}
+
+.admin .btn {
+    --bs-btn-border-radius: 0;
+}
+
+.admin .btn-dark,
+.admin .btn-outline-dark,
+.admin .btn-outline-danger,
+.admin .btn-success,
+.admin .btn-outline-success,
+.admin .btn-outline-secondary {
+    --bs-btn-font-size: .75rem;
+    --bs-btn-font-weight: 500;
+    --bs-btn-padding-x: 1.1rem;
+    --bs-btn-padding-y: .6rem;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+}
+
+.admin .btn-sm {
+    --bs-btn-font-size: .6875rem;
+    --bs-btn-padding-x: .75rem;
+    --bs-btn-padding-y: .4rem;
+}
+
+.admin .btn-dark {
+    --bs-btn-bg: var(--sm-ink);
+    --bs-btn-border-color: var(--sm-ink);
+    --bs-btn-hover-bg: #000;
+    --bs-btn-hover-border-color: #000;
+}
+
+.admin .btn-outline-danger {
+    --bs-btn-color: var(--sm-sale);
+    --bs-btn-border-color: var(--sm-sale);
+    --bs-btn-hover-bg: var(--sm-sale);
+    --bs-btn-hover-border-color: var(--sm-sale);
+}
+
+/* Discount badges ("2nd pair -30%") in the promotion and coupon lists: same red outline as in the shop */
+.admin .badge.text-bg-warning {
+    background: #fff !important;
+    color: var(--sm-sale) !important;
+    border: 1px solid var(--sm-sale);
+    letter-spacing: .08em;
+    text-transform: uppercase;
+}
+
+.admin .form-switch .form-check-input {
+    border-radius: 2em;
+}
+
+.admin-chip {
+    font-size: .6875rem;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    border: 1px solid var(--sm-line);
+    color: var(--sm-muted);
+    padding: .1rem .4rem;
+    margin-left: .25rem;
+}
+
+/* Admin: dashboard numbers */
+.admin-kpis {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    background: #fff;
+    border: 1px solid var(--sm-line);
+}
+
+.admin-kpi {
+    padding: 1.25rem 1.4rem;
+    border-right: 1px solid var(--sm-line);
+}
+
+.admin-kpi-value {
+    font-family: var(--sm-serif);
+    font-size: 2.4rem;
+    font-weight: 500;
+    line-height: 1.1;
+    margin-top: .4rem;
+    font-variant-numeric: lining-nums;
+}
+
+/* Admin: announcement type badges (announcements list) */
+.announce-type-drop {
+    background: #ffc107;
+    color: #212529;
+}
+
+.announce-type-restock {
+    background: #20c997;
+    color: #212529;
+}
+
+.announce-type-promo {
+    background: #dc3545;
+    color: #fff;
+}
+
+/* Admin: Analytics page */
+.chart-box {
+    position: relative;
+    height: 260px;
+}
+
+.share-bar {
+    height: 6px;
+}
+
+/* Admin: Visits page (long paths and referrers are cut, full text on hover) */
+.visit-path {
+    max-width: 340px;
+}
+
+.visit-referrer {
+    max-width: 160px;
+}
+
+/* Admin: list rows created in the last 24 hours get a light red tint and a short shake every few seconds */
+.admin-row-new {
+    --bs-table-bg: #fef5f4;
+    animation: admin-row-shake 5s ease-in-out infinite;
+}
+
+.admin-row-new > td:first-child {
+    /* the second shadow is Bootstrap's own (row hover color), kept so hover still works on this cell */
+    box-shadow: inset 3px 0 0 #b42318, inset 0 0 0 9999px var(--bs-table-bg-state, var(--bs-table-bg-type, var(--bs-table-accent-bg)));
+}
+
+@keyframes admin-row-shake {
+    0%, 88%, 100% {
+        transform: translateX(0);
+    }
+
+    90%, 94%, 98% {
+        transform: translateX(-3px);
+    }
+
+    92%, 96% {
+        transform: translateX(3px);
+    }
+}
+
+/* Admin: brands and models */
+.admin-form-narrow {
+    max-width: 480px;
+}
+
+.admin-search {
+    max-width: 320px;
+}
+
+.admin-image-preview {
+    max-width: 240px;
+    max-height: 160px;
+    object-fit: cover;
+}
+
+.admin-thumb {
+    width: 48px;
+    height: 48px;
+    object-fit: cover;
+}
+
+.admin-thumb-wide {
+    width: 72px;
+    height: 36px;
+    object-fit: cover;
+}
+
+/* Admin: users */
+.admin-role-select {
+    width: 140px;
+}
+
+/* Admin: promotions */
+.admin-input-narrow {
+    max-width: 140px;
+}
+
+/* Admin: promotions and coupons, "Which products?" checkbox lists (partials/targets.blade.php) */
+.admin-check-list {
+    max-height: 240px;
+    overflow-y: auto;
+}
+
+.admin-check-group {
+    position: sticky;
+    top: 0;
+    background: #fff;
+}
+
+/* Admin: contact messages (keep the customer's line breaks) */
+.admin-message-body {
+    white-space: pre-line;
+    max-width: 760px;
+}
+
+/* Media queries */
+@media (min-width: 992px) and (max-width: 1199.98px) {
+    /* Navigation: tighter on small laptops so the menu stays on one line */
+    .shop-nav .navbar-nav {
+        gap: .25rem !important;
+    }
+
+    .shop-nav .nav-link {
+        letter-spacing: .08em;
+    }
+
+    .shop-search {
+        max-width: 150px;
+    }
+}
+
+@media (max-width: 991.98px) {
+    /* Homepage: smaller display type on tablets and phones */
+    .display-serif {
+        font-size: 3.5rem;
+    }
+
+    .display-serif-xl {
+        font-size: 4rem;
+    }
+
+    .section-title {
+        font-size: 2.25rem;
+    }
+
+    .home-section {
+        padding-top: 4rem;
+    }
+
+    .home-band {
+        margin-top: 4rem;
+        padding-top: 3.5rem;
+        padding-bottom: 3.5rem;
+    }
+
+    /* Navigation: search fills the opened menu */
+    .shop-search {
+        max-width: none;
+    }
+}
+
+@media (max-width: 767.98px) {
+    /* Admin: sidebar on top, menu behind a button */
+    .admin-side {
+        flex-basis: auto;
+        border-right: 0;
+        border-bottom: 1px solid var(--sm-line);
+    }
+
+    .admin-main {
+        padding: 1.5rem 1rem 2.5rem;
+    }
+
+    /* Homepage: phones */
+    .home-cover-slide {
+        min-height: 0;
+    }
+
+    .home-cover-countdown {
+        font-size: 2rem;
+    }
+
+    .category-tile {
+        min-height: 160px;
+        padding-right: 1rem;
+    }
+
+    .category-tile-count {
+        font-size: 3rem;
+    }
+
+    .category-tile-name,
+    .brand-slide-name {
+        font-size: 1.6rem;
+    }
+
+    /* Inner pages: smaller titles, tighter rows, size buttons fit 4 per row */
+    .page-title {
+        font-size: 2.75rem;
+    }
+
+    .page-title-sm {
+        font-size: 2.25rem;
+    }
+
+    .cart-row {
+        gap: 1rem;
+    }
+
+    .cart-row-image {
+        width: 84px;
+        height: 105px;
+    }
+
+    .cart-row-image-sm,
+    .cart-row-image-xs {
+        width: 64px;
+        height: 80px;
+    }
+
+    .size-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .panel-soft,
+    .panel-line {
+        padding: 1.5rem;
+    }
+
+    .product-thumb {
+        width: 64px;
+        height: 80px;
+    }
+}
+
+/* No pulsing dot / zooming images / shaking admin rows / cart animations for people who turned animations off */
+@media (prefers-reduced-motion: reduce) {
+    .announce-dot,
+    .admin-row-new,
+    .cart-bump,
+    .cart-drawer-item-new,
+    .cart-flash,
+    .cart-flash::after,
+    .site-toast-bar.is-running {
+        animation: none;
+    }
+
+    .product-card-image img,
+    .brand-slide-media img {
+        transition: none;
+    }
+}

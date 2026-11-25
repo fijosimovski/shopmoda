@@ -1,0 +1,13 @@
+{
+    "name": "ShopModa",
+    "short_name": "ShopModa",
+    "lang": "sr-Latn",
+    "start_url": "/",
+    "display": "browser",
+    "background_color": "#f5f0eb",
+    "theme_color": "#1c1917",
+    "icons": [
+        { "src": "/images/icon-192.png", "sizes": "192x192", "type": "image/png" },
+        { "src": "/images/icon-512.png", "sizes": "512x512", "type": "image/png" }
+    ]
+}
