@@ -2049,6 +2049,13 @@
         width: 64px;
         height: 80px;
     }
+
+    /* Rows with g-5: their -1.5rem side margins stick out past the container's .75rem padding
+       and make the page scroll sideways. Top margin is left alone so vertical spacing doesn't change. */
+    .row.g-5 {
+        margin-left: 0;
+        margin-right: 0;
+    }
 }
 
 /* No pulsing dot / zooming images / shaking admin rows / cart animations for people who turned animations off */

@@ -13,7 +13,8 @@
                 <a href="{{ route('products.index') }}" class="btn btn-ink">Započnite kupovinu</a>
             </div>
         @else
-            <div class="table-responsive mt-4">
+            {{-- position-relative: makes the absolute .visually-hidden "Detalji" label scroll inside the table instead of widening the page on phones --}}
+            <div class="table-responsive position-relative mt-4">
                 <table class="table align-middle mb-0">
                     <thead>
                     <tr><th>Porudžbina</th><th>Datum</th><th>Stavki</th><th class="text-end">Ukupno</th><th class="ps-4">Status</th><th><span class="visually-hidden">Detalji</span></th></tr>
