@@ -8,10 +8,11 @@
         </button>
 
         <div class="collapse navbar-collapse" id="mainNav">
-            <ul class="navbar-nav me-auto gap-lg-3 ms-lg-4">
-                <li class="nav-item"><a class="nav-link {{ request()->routeIs('products.*') && !request('gender') && !request('sale') ? 'active' : '' }}" href="{{ route('products.index') }}">Sve patike</a></li>
+            <ul class="navbar-nav me-auto gap-lg-2 ms-lg-2">
+                <li class="nav-item"><a class="nav-link {{ request()->routeIs('products.*') && !request('gender') && !request('sale') ? 'active' : '' }}" href="{{ route('products.index') }}">Svi artikli</a></li>
                 <li class="nav-item"><a class="nav-link {{ request('gender') === 'men' ? 'active' : '' }}" href="{{ route('products.index', ['gender' => 'men']) }}">Muškarci</a></li>
                 <li class="nav-item"><a class="nav-link {{ request('gender') === 'women' ? 'active' : '' }}" href="{{ route('products.index', ['gender' => 'women']) }}">Žene</a></li>
+                <li class="nav-item"><a class="nav-link {{ request('gender') === 'unisex' ? 'active' : '' }}" href="{{ route('products.index', ['gender' => 'unisex']) }}">Unisex</a></li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Kategorije</a>
                     <ul class="dropdown-menu">
@@ -23,9 +24,9 @@
                 <li class="nav-item"><a class="nav-link nav-link-sale {{ request('sale') ? 'active' : '' }}" href="{{ route('products.index', ['sale' => 1]) }}">Akcija</a></li>
             </ul>
 
-            <form class="d-flex align-items-center me-lg-4 my-3 my-lg-0 shop-search" action="{{ route('products.index') }}" method="GET" role="search">
+            <form class="d-flex align-items-center me-lg-2 my-3 my-lg-0 shop-search" action="{{ route('products.index') }}" method="GET" role="search">
                 <i class="bi bi-search" aria-hidden="true"></i>
-                <input class="form-control" type="search" name="q" placeholder="Pretraži patike..." aria-label="Pretraži patike" value="{{ request('q') }}">
+                <input class="form-control" type="search" name="q" placeholder="Pretraži..." aria-label="Pretraži artikle" value="{{ request('q') }}">
             </form>
 
             <ul class="navbar-nav align-items-lg-center gap-lg-3">

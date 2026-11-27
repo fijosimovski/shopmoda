@@ -56,7 +56,7 @@
                                         <div class="home-cover-countdown mb-4" data-countdown="{{ $promotion->ends_at->toIso8601String() }}">{{ $promotion->ends_at->diffForHumans(syntax: \Carbon\CarbonInterface::DIFF_ABSOLUTE) }}</div>
                                         <div class="d-flex flex-wrap align-items-center gap-4">
                                             <a href="{{ route('promotions.show', $promotion) }}" class="btn btn-ink btn-lg">Pogledaj akciju</a>
-                                            <a href="{{ route('products.index') }}" class="link-caps">Sve patike</a>
+                                            <a href="{{ route('products.index') }}" class="link-caps">Svi artikli</a>
                                         </div>
                                     </div>
                                 </div>
@@ -91,7 +91,7 @@
         <!-- Hero (the first featured sneaker is the cover photo) -->
         @php($coverProduct = $featured->first(fn ($product) => $product->mainImage))
         <section class="container mt-4">
-            <div class="row g-5 align-items-end">
+            <div class="row g-5 align-items-end m-0 m-sm-3">
                 <div class="col-lg-6 py-lg-5">
                     <div class="label-caps">Lifestyle · Comfort · Streetwear</div>
                     <h1 class="display-serif display-serif-xl my-4">Pronađite svoj<br><em>sledeći</em> par.</h1>
@@ -168,7 +168,7 @@
             <section class="home-section">
                 <div class="section-head">
                     <h2 class="section-title">Kupujte po <em>kategoriji</em></h2>
-                    <a href="{{ route('products.index') }}" class="link-caps">Sve patike</a>
+                    <a href="{{ route('products.index') }}" class="link-caps">Svi artikli</a>
                 </div>
                 <div class="row row-cols-2 row-cols-md-3 row-cols-lg-5 g-0 category-tiles">
                     @foreach($categories as $category)
@@ -216,7 +216,7 @@
                 <div class="section-head">
                     <h2 class="section-title">Svi <em>modeli</em></h2>
                     <div class="d-flex align-items-center gap-4">
-                        <a href="{{ route('products.index') }}" class="link-caps">Sve patike</a>
+                        <a href="{{ route('products.index') }}" class="link-caps">Svi artikli </a>
                         <div class="d-flex gap-1">
                             <button class="btn btn-square" type="button" data-models-prev aria-label="Prethodni modeli"><i class="bi bi-chevron-left"></i></button>
                             <button class="btn btn-square btn-square-dark" type="button" data-models-next aria-label="Sledeći modeli"><i class="bi bi-chevron-right"></i></button>
@@ -249,6 +249,7 @@
 
 @push('scripts')
     <script src="{{ asset('js/models-slider.js') }}"></script>
+    <script src="{{ asset('js/cover-height.js') }}"></script>
 @endpush
 
 {{-- pushOnce: the announcement bar loads the same script --}}

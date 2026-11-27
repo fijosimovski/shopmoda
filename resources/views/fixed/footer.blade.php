@@ -1,7 +1,7 @@
 {{-- $footerInstagram, $footerPhone and $footerEmail come from AppServiceProvider (View::composer) --}}
 <footer class="site-footer mt-5">
     <div class="container py-5">
-        <div class="row g-5 py-lg-3">
+        <div class="row g-5 py-lg-3 m-0">
             {{-- Brand --}}
             <div class="col-lg-4">
                 <a href="{{ route('home') }}" class="shop-logo shop-logo-light">SHOPMODA<span>.</span></a>
@@ -16,7 +16,7 @@
             <div class="col-6 col-md-4 col-lg-2">
                 <h2 class="footer-title">Prodavnica</h2>
                 <ul class="list-unstyled mb-0">
-                    <li><a href="{{ route('products.index') }}" class="footer-link">Sve patike</a></li>
+                    <li><a href="{{ route('products.index') }}" class="footer-link">Svi artkli</a></li>
                     <li><a href="{{ route('products.index', ['gender' => 'men']) }}" class="footer-link">Muškarci</a></li>
                     <li><a href="{{ route('products.index', ['gender' => 'women']) }}" class="footer-link">Žene</a></li>
                     <li><a href="{{ route('products.index', ['sale' => 1]) }}" class="footer-link">Akcija</a></li>

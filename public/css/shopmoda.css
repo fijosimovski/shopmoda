@@ -557,7 +557,7 @@
 .shop-search {
     gap: .6rem;
     border-bottom: 1px solid var(--sm-ink);
-    max-width: 230px;
+    max-width: 210px;
 }
 
 .shop-search .form-control {
@@ -779,11 +779,26 @@
     height: 24px;
     border: 0;
     padding: 0;
-    background: linear-gradient(#d6cec6, #d6cec6) center / 100% 2px no-repeat;
+    /* A dark line over the gray one. Going forward it flows to the right: the new active dot fills from the left
+       while the old one drains out to the right. */
+    background:
+        linear-gradient(var(--sm-ink), var(--sm-ink)) right center / 0 2px no-repeat,
+        linear-gradient(#d6cec6, #d6cec6) center / 100% 2px no-repeat;
+    transition: background-size .6s ease;
 }
 
 .home-cover-dots button.active {
-    background-image: linear-gradient(var(--sm-ink), var(--sm-ink));
+    background-position: left center, center;
+    background-size: 100% 2px, 100% 2px;
+}
+
+/* Going back (public/js/cover-height.js): the same, flowing to the left */
+.home-cover-dots.is-reverse button {
+    background-position: left center, center;
+}
+
+.home-cover-dots.is-reverse button.active {
+    background-position: right center, center;
 }
 
 /* Homepage: hero (the cover photo is the first featured sneaker) */
@@ -1903,6 +1918,12 @@
 }
 
 /* Media queries */
+@media (max-width: 1200px) {
+    .shop-search {
+        max-width: 100px;
+        margin-right: .5rem !important;
+    }
+}
 @media (min-width: 992px) and (max-width: 1199.98px) {
     /* Navigation: tighter on small laptops so the menu stays on one line */
     .shop-nav .navbar-nav {
@@ -1910,12 +1931,15 @@
     }
 
     .shop-nav .nav-link {
-        letter-spacing: .08em;
+        font-size: .75rem;
+        letter-spacing: .02em;
+        --bs-navbar-nav-link-padding-x: .25rem;
     }
 
-    .shop-search {
-        max-width: 150px;
+    .shop-nav .navbar-nav.ms-lg-4 {
+        margin-left: .5rem !important;
     }
+
 }
 
 @media (max-width: 991.98px) {
@@ -1973,6 +1997,9 @@
         min-height: 160px;
         padding-right: 1rem;
     }
+    .category-tile-meta {
+        font-size: .6rem;
+    }
 
     .category-tile-count {
         font-size: 3rem;
@@ -2006,7 +2033,9 @@
         width: 64px;
         height: 80px;
     }
-
+    .cart-row .serif-lg {
+        font-size: 1.2rem;
+    }
     .size-grid {
         grid-template-columns: repeat(4, minmax(0, 1fr));
     }
@@ -2035,7 +2064,8 @@
     }
 
     .product-card-image img,
-    .brand-slide-media img {
+    .brand-slide-media img,
+    .home-cover-dots button {
         transition: none;
     }
 }

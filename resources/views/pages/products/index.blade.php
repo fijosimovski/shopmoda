@@ -3,20 +3,20 @@
 @php
     // Page title from the strongest filter: sale, category, model, brand, gender; else "Sve patike"
     $heading = match (true) {
-        (bool) request('sale') => 'Patike na akciji',
+        (bool) request('sale') => 'Artikli na akciji',
         (bool) request('category') => $categories->firstWhere('slug', request('category'))?->name,
         (bool) request('model') => $modelGroups->flatten(1)->firstWhere('slug', request('model'))?->name,
         (bool) request('brand') => $brands->firstWhere('slug', request('brand'))?->name,
-        request('gender') === 'men' => 'Muške patike',
-        request('gender') === 'women' => 'Ženske patike',
-        request('gender') === 'unisex' => 'Unisex patike',
+        request('gender') === 'men' => 'Muški kutak',
+        request('gender') === 'women' => 'Ženski kutak',
+        request('gender') === 'unisex' => 'Unisex',
         default => null,
-    } ?? 'Sve patike';
+    } ?? 'Svi artikli';
 
     // <title> and description for Google: "Nike patike", "Running – patike", page 2...
     $seoHeading = match (true) {
         (bool) request('q') => 'Pretraga: ' . request('q'),
-        (bool) request('brand') && !request('category') && !request('model') && !request('sale') => $heading . ' patike',
+        (bool) request('brand') && !request('category') && !request('model') && !request('sale') => $heading . ' artikli',
         default => $heading,
     };
     $seoPage = $products->currentPage() > 1 ? ' – strana ' . $products->currentPage() : '';
@@ -28,7 +28,7 @@
 @section('pageContent')
     <section class="container pt-4">
         <nav class="page-crumbs" aria-label="Putanja">
-            <a href="{{ route('home') }}">Početna</a> / <a href="{{ route('products.index') }}">Patike</a>@if($heading !== 'Sve patike') / {{ $heading }}@endif
+            <a href="{{ route('home') }}">Početna</a> / <a href="{{ route('products.index') }}">Artikli</a>@if($heading !== 'Svi artikli') / {{ $heading }}@endif
         </nav>
         <div class="d-flex flex-wrap justify-content-between align-items-end gap-3 mt-3 pb-4 rule-ink">
             <h1 class="page-title">
@@ -134,7 +134,7 @@
             <div class="col-lg-9">
                 @if($products->isEmpty())
                     <div class="empty-state">
-                        <p class="serif-lg mb-2">Nema patika koje odgovaraju ovim filterima.</p>
+                        <p class="serif-lg mb-2">Nema artikala koje odgovaraju ovim filterima.</p>
                         <a href="{{ route('products.index') }}" class="link-caps">Poništi filtere</a>
                     </div>
                 @else

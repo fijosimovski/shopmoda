@@ -21,7 +21,7 @@
             <div class="d-flex flex-wrap justify-content-center gap-3 mt-4">
                 @section('errorActions')
                     <a href="{{ route('home') }}" class="btn btn-ink">Početna strana</a>
-                    <a href="{{ route('products.index') }}" class="btn btn-outline-dark rounded-0">Sve patike</a>
+                    <a href="{{ route('products.index') }}" class="btn btn-outline-dark rounded-0">Svi artikli</a>
                 @show
             </div>
         </div>
